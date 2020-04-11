@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<section class="section">
+    <div class="container">
+        <h1 class="title welcome-text">Welcome</h1>
+        <h1 class="title welcome-text">স্বাগত</h1>
+        <h1 class="title welcome-text">स्वागत हे</h1>
+        <h1 class="title welcome-text">Kamusta</h1>
+        <!-- <h1 class="title">Welcome | স্বাগত | स्वागत हे | Kamusta </h1> -->
+        <p class="subtitle has-text-grey">
+            Get <strong><a href="https://www.gov.sg/">Gov.sg</a></strong> updates in your language.
+            This is an <strong>unofficial</strong> service for our foreign friends.
+        </p>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <div class="card bm--card-equal-height">
+                    <div class="card-content">
+                        <p class="title">
+                            আমি বেঙ্গালি কথা বলি, আমাকে আপডেট রাখি..
+                        </p>
+                        </br>
+                        <p class="subtitle">
+                            আপডেট পেতে নীচের লিঙ্কে ক্লিক করুন
+                        </p>
+                    </div>
+                    <footer class="card-footer">
+                        <a data-target="#phone_form_modal" class="card-footer-item open-modal" data-lang-sel="bengali" aria-haspopup="true">
+                            <span>
+                                <i class="fab fa-whatsapp"></i> Send me a Whatsapp Message
+                            </span>
+                        </a>
+
+                    </footer>
+                </div>
+            </div>
+            <div class="column">
+                <div class="card bm--card-equal-height">
+                    <div class="card-content">
+                        <p class="title">
+                            मैं हिंदी बोलता हूं, मुझे अपडेट रखें ।।
+                        </p>
+                        </br>
+                        <p class="subtitle">
+                            अपडेट पाने के लिए नीचे दिए गए लिंक पर क्लिक करें
+                        </p>
+                    </div>
+                    <footer class="card-footer">
+                        <a data-target="#phone_form_modal" class="card-footer-item open-modal" data-lang-sel="hindi" aria-haspopup="true">
+                            <span>
+                                <i class="fab fa-whatsapp"></i> Send me a Whatsapp Message
+                            </span>
+                        </a>
+                    </footer>
+                </div>
+            </div>
+            <div class="column">
+                <div class="card bm--card-equal-height">
+                    <div class="card-content">
+                        <p class="title">
+                            Nagsasalita ako ng Tagalog, panatilihin mo akong mai-update ..
+                        </p>
+                        </br>
+                        <p class="subtitle">
+                            I-click ang link sa ibaba upang makuha ang pag-update
+                        </p>
+                    </div>
+                    <footer class="card-footer">
+                        <a data-target="#phone_form_modal" class="card-footer-item open-modal" data-lang-sel="tagalog" aria-haspopup="true">
+                            <span>
+                                <i class="fab fa-whatsapp"></i> Send me a Whatsapp Message
+                            </span>
+                        </a>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal has-overflow" id="phone_form_modal">
+        <div class="modal-background"></div>
+        <div class="modal-card ">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Phone Number</p>
+            </header>
+            <section class="modal-card-body">
+                <p>
+                    Do provide us your whatsapp phone number for us to send you the updates!
+                </p>
+                </br>
+                {% if form %}
+                <form class="form-inline" id="PhoneForm" method="POST" action="/" role="phone_number_form">
+                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                  <div class="field is-grouped is-medium">
+                    {{ form.phone()}}
+
+                  </div>
+                    {{ form.submit(class_ ="button is-primary")}}
+
+
+                </form>
+                {% endif %}
+            </section>
+            <!-- <footer class="modal-card-foot">
+                <button class="button is-success">Save changes</button>
+                <button class="button close-modal" aria-label="close">Cancel</button>
+            </footer> --> 
+        </div>
+    </div>
+
+</section>
+
+<script>
+
+</script>
+{% endblock %}

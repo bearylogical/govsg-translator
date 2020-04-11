@@ -1,0 +1,29 @@
+.welcome-text {display: none;}
+
+  .card-footer{
+      background-color: #07ffaea1;
+  }
+
+a {
+    color:#040d26
+}
+
+.bm--card-equal-height {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.bm--card-equal-height .card-footer {
+  margin-top: auto;
+}
+
+.modal.has-overflow {
+  position: fixed !important;
+  overflow: auto !important;
+  .modal-background {
+    position: fixed !important; // so page stays dark as we scroll
+  }
+  .modal-content, .modal-card, .modal-card-body {
+    overflow: visible !important;
+  }
+}

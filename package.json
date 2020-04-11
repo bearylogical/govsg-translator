@@ -1,0 +1,58 @@
+{
+  "name": "govsg_translator",
+  "version": "1.0.0",
+  "description": "Admin panel for managing and broadcasting govsg messages",
+  "scripts": {
+    "build": "run-script-os",
+    "build:win32": "SET NODE_ENV=production && webpack --progress --colors -p && npm run flask-static-digest",
+    "build:default": "NODE_ENV=production webpack --progress --colors -p && npm run flask-static-digest",
+    "start": "run-script-os",
+    "start:win32": "concurrently -n \"WEBPACK,FLASK\" -c \"bgBlue.bold,bgMagenta.bold\" \"npm run webpack-watch:win32\" \"npm run flask-server\"",
+    "start:default": "concurrently -n \"WEBPACK,FLASK\" -c \"bgBlue.bold,bgMagenta.bold\" \"npm run webpack-watch\" \"npm run flask-server\"",
+    "webpack-watch": "run-script-os",
+    "webpack-watch:win32": "SET NODE_ENV=debug && webpack --mode development --watch",
+    "webpack-watch:default": "NODE_ENV=debug webpack --mode development --watch",
+    "flask-server": "pipenv run flask run --host=0.0.0.0",
+    "flask-static-digest": "pipenv run flask digest compile",
+    "lint": "eslint \"assets/js/*.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bearylogical/govsg_translator.git"
+  },
+  "author": "Syamil Maulod",
+  "license": "MIT",
+  "engines": {
+    "node": ">=10"
+  },
+  "bugs": {
+    "url": "https://github.com/bearylogical/govsg_translator/issues"
+  },
+  "homepage": "https://github.com/bearylogical/govsg_translator#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.0.0",   
+    "jquery": "^3.4.1",
+    "bulma": "^0.8.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.7.7",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.6",
+    "concurrently": "^5.0.0",
+    "sass-loader": "^7.0.3",
+    "style-loader" : "^1.1.3",
+    "node-sass": "^4.9.2",
+    "css-loader": "^3.5.0",
+    "eslint": "^6.2.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.17.3",
+    "file-loader": "^6.0.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "raw-loader": "^4.0.0",
+    "url-loader": "^4.0.0",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.2",
+    "run-script-os": "^1.1.1"
+  }
+}
