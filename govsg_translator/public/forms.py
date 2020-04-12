@@ -2,14 +2,15 @@
 """Public forms."""
 import phonenumbers
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField, SubmitField
+from wtforms import PasswordField, StringField, SubmitField, HiddenField
 from wtforms.validators import DataRequired, ValidationError
 
-from govsg_translator.user.models import User
+from govsg_translator.user.models import User, Phone
 
 
 class PhoneForm(FlaskForm):
     phone = StringField("Phone", validators=[DataRequired()])
+    language = HiddenField("Language", validators=[DataRequired()])
     submit = SubmitField("Submit")
 
     def validate_phone(self, phone):
@@ -19,6 +20,16 @@ class PhoneForm(FlaskForm):
                 raise ValueError()
         except (phonenumbers.phonenumberutil.NumberParseException, ValueError):
             raise ValidationError("Invalid phone number")
+        
+        phone_number = Phone.query.filter_by(phone_number=phone.data).first()
+        if phone_number:
+            raise ValidationError('Already registered!')
+
+    def validate_lang(self, language):
+        valid_languages = ['tagalog', 'hindi', 'bengali']
+
+        if language.data not in valid_languages:
+            raise ValidationError("Not a valid language")
 
 
 class LoginForm(FlaskForm):

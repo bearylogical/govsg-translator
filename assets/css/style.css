@@ -27,3 +27,12 @@ a {
     overflow: visible !important;
   }
 }
+
+.footer {
+  bottom: 0;
+  left: 0;
+  position: relative;
+  right: 0;
+  z-index: 30;
+  padding-bottom: 3rem;
+}

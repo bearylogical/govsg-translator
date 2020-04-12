@@ -9,6 +9,7 @@ from flask import (
     request,
     session,
     url_for,
+    jsonify
 )
 from flask_login import login_required, login_user, logout_user
 
@@ -38,18 +39,17 @@ def home():
     return render_template("public/home.html", form=form)
 
 
-@blueprint.route("/register/<lang>", methods=["POST"])
-def show_phone(lang):
+@blueprint.route("/register", methods=["POST"])
+def show_phone():
     form = PhoneForm(request.form)
     if request.method == "POST":
         if form.validate_on_submit():
-            current_app.logger.info(f"{form.phone.data}")
-            session["phone"] = form.phone.data
-            Phone.create(phone_number=form.phone.data, language=lang)
+            current_app.logger.info(f"{form.phone.data} with language {form.language.data}")
+            Phone.create(phone_number=form.phone.data, language=form.language.data)
             status = 'success'
             return status
         else:
-            return "error"
+            return jsonify(message=form.errors), 400
     # return render_template("public/home.html", form=form)
 
 
